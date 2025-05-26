@@ -18,3 +18,38 @@ library(readxl)
 ## Problem 1:
 ## a.
 [I could calculate the mean amount of time I practice at each location to compare how long I tend to practice at the studio or at home. This comparison would be informative because the studio has less distractions, likely encouraging me to practice longer than I do at home.]
+
+## b.
+
+```{r}
+data <- read_csv("ENVS 193 Data - Sheet1 (2).csv") |> 
+  clean_names()
+```
+
+```{r}
+ summary_data <- data |>
+  group_by(location) |>
+  summarise(
+    mean_duration = mean(duration_hr),
+    sd_duration = sd(duration_hr)
+  )
+view(summary_data)
+```
+
+```{r}
+ggplot(data, aes(x = location, y = duration_hr, color = location)) +
+  geom_jitter(width = 0.2, alpha = 0.6, size = 2) +
+  geom_point(data = summary_data, aes(x = location, y = mean_duration), 
+             shape = 23, size = 4, fill = "black") +
+  geom_errorbar(data = summary_data, aes(x = location, ymin = mean_duration - sd_duration, ymax = mean_duration + sd_duration),
+                width = 0.2, color = "black", inherit.aes = FALSE) +
+  scale_color_manual(values = c("Home" = "blue", "Studio" = "orange")) +
+  labs(
+    title = "Practice Duration by Location",
+    x = "Practice Location",
+    y = "Practice Duration (hours)"
+  ) +
+  theme_light(base_size = 14) +
+  theme(legend.position = "none")
+```
+
