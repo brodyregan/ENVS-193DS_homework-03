@@ -53,3 +53,50 @@ ggplot(data, aes(x = location, y = duration_hr, color = location)) +
   theme(legend.position = "none")
 ```
 
+## c. 
+[Figure 1: Practicing in the studio tends to allow for longer practice time. Data Source: Brody Regan. Points represent observations of practice time (in hours) at practice location (Home or Studio). The center black diamond represents the mean time, and the bars represent the standard error, both respective to their site. Colors represent location (blue = home, orange = studio).]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
