@@ -3,3 +3,18 @@ title: "homework-03"
 format: html
 ---
 
+[View this repository on GitHub](https://github.com/brodyregan/ENVS-193DS_homework-03)
+
+```{r}
+library(tidyverse)
+library(here)
+library(gt)
+library(flextable)
+library(janitor)
+install.packages("readxl")
+library(readxl)
+```
+
+## Problem 1:
+## a.
+[I could calculate the mean amount of time I practice at each location to compare how long I tend to practice at the studio or at home. This comparison would be informative because the studio has less distractions, likely encouraging me to practice longer than I do at home.]
