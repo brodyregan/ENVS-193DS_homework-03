@@ -21,7 +21,7 @@ library(readxl)
 ## b.
 
 ```{r, message=FALSE, warning=FALSE}
-data <- read_csv("ENVS 193 Data - Sheet1 (2).csv") |> 
+data <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") |> 
   clean_names()
 ```
 
@@ -80,9 +80,55 @@ data_summary |>
 ```
 
 
+## Problem 2:
+## a.
+[Affective visualization for my data will take inspiration from the painted quilt using colored strips. The color of each strip will represent the instrument practiced and the opacity of it will represent the amount practiced in one session. This creates a sense of emotion and energy because the longer practices will have more extreme (bright) colors, while less time will have lighter colors. I would also like to include a shape for each bar and have the size correspond to the amount of meals ate. For example, larger shapes represent more meals ate before practicing that day.]
+
+
+## b. 
+[Photo](../data/IMG_5716.jpg){width=400px}
 
 
 
+## c.
+```{r draft-quilt, echo=TRUE, message=FALSE}
+
+# 1. Read and preprocess
+df <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") %>%
+  mutate(
+    Date = as.Date(`Date:`, format = "%Y-%m-%d"),
+    SessionID = row_number()
+  )
+
+# 2. Map instruments to warm/cool hues
+palette <- c(
+  "Drums" = "#E64A19",
+  "Guitar" = "#1976D2",
+  "Bass" = "#388E3C"
+)
+
+# 3. Plot: horizontal strips with opacity = duration
+ggplot(df, aes(x = SessionID, y = 1,
+               fill = `Instrument Practiced:`,
+               alpha = `Duration (hr)` / max(`Duration (hr)`))) +
+  geom_tile(width = 0.9, height = 0.6) +
+  # overlay circles for meals
+  geom_point(aes(size = `Meals Ate:`), shape = 21, color = "gray20", fill = "white") +
+  scale_fill_manual(values = palette) +
+  scale_alpha(range = c(0.3, 1), guide = "none") +
+  scale_size_area(max_size = 6) +
+  theme_void() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold")
+  ) +
+  labs(
+    title = "Rhythmic Strips: A Semester of Practice",
+    fill = "Instrument",
+    size = "Meals Ate"
+  )
+
+```
 
 
 
