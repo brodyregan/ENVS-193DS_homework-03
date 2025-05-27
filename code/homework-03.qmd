@@ -4,7 +4,7 @@ format: html
 ---
 
 [View this repository on GitHub](https://github.com/brodyregan/ENVS-193DS_homework-03)
-[View the rendered website] (https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html)
+##[View the rendered website] (https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html)
 
 ```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
