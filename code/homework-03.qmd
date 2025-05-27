@@ -87,7 +87,7 @@ data_summary |>
 
 
 ## b. 
-[Photo](../data/IMG_5716.jpg){width=400px}
+<img src="../data/IMG_5716.jpg" alt="Photo" style="transform: rotate(-90deg); width: 400px;">
 
 
 
