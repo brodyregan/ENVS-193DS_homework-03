@@ -94,45 +94,42 @@ data_summary |>
 ## c.
 ```{r draft-quilt, echo=TRUE, message=FALSE}
 
-# 1. Read and preprocess
-df <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") %>%
-  mutate(
-    Date = as.Date(`Date:`, format = "%Y-%m-%d"),
-    SessionID = row_number()
-  )
+visual_data <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") |>  #import csv file from data folder 
+  mutate(SessionID = row_number())#assign sequential order for each practice session
 
-# 2. Map instruments to warm/cool hues
-palette <- c(
-  "Drums" = "#E64A19",
-  "Guitar" = "#1976D2",
-  "Bass" = "#388E3C"
+palette <- c( #define color palette
+  "Drums" = "red",#red for drums
+  "Guitar" = "#1976D2", #blue code for guitar
+  "Bass" = "green"#green for guitar
 )
 
-# 3. Plot: horizontal strips with opacity = duration
-ggplot(df, aes(x = SessionID, y = 1,
-               fill = `Instrument Practiced:`,
-               alpha = `Duration (hr)` / max(`Duration (hr)`))) +
-  geom_tile(width = 0.9, height = 0.6) +
-  # overlay circles for meals
-  geom_point(aes(size = `Meals Ate:`), shape = 21, color = "gray20", fill = "white") +
-  scale_fill_manual(values = palette) +
-  scale_alpha(range = c(0.3, 1), guide = "none") +
-  scale_size_area(max_size = 6) +
-  theme_void() +
+ggplot(visual_data, aes(x = SessionID, y = 1, #load data, put each session along x-axis, fixed y position
+               fill = `Instrument Practiced:`, #color by instrument
+               alpha = `Duration (hr)` / max(`Duration (hr)`))) + #make the hue/opacity proportional to the practice time
+  geom_tile(width = 0.9, height = 0.6) + #create horizontal strips with parameters
+  geom_point(aes(size = `Meals Ate:`), shape = 21, color = "black", fill = "white") + #overlay circles (not squares), make the size proportional, styled circle points 
+  scale_fill_manual(values = palette) + #apply custom fill
+  scale_alpha(range = c(0.3, 1), guide = "none") + #set opacity range, and remove legend
+  scale_size_area(max_size = 6) + #set max size
+  theme_void() + #set alternative theme to remove axis and grid 
   theme(
-    legend.position = "bottom",
+    legend.position = "bottom", #place new legend at bottom
     plot.title = element_text(hjust = 0.5, size = 16, face = "bold")
-  ) +
+  ) + #center the title and make it bold
   labs(
-    title = "Rhythmic Strips: A Semester of Practice",
-    fill = "Instrument",
-    size = "Meals Ate"
+    title = "Rhythmic Strips: A Semester of Practice", #label title
+    fill = "Instrument", #label instrument for legend
+    size = "Meals Ate" #label meals ate for legend
   )
 
 ```
 
 
-
+## d.
+[1. My piece is representing aspects that affect my practice time. The colors show the type of instrument, and the circles/size of circle show how many meals I ate before practicing that day. The lighter the fill color, the shorter amount of time I practiced. 
+2. I found Lorraine Woodruff-Long’s warming strips quilt to be an inspiring piece. I used a similar color scheme and geometric shapes to convey an emotional view of practice time. 
+3. This visualization was created from written code in R studio.
+4. I created this by first loading the data set and writing the code for the ggplot/tiles. Then through online research and help from AI I was able to fill in the rest of the code through trial and error. ]
 
 
 
