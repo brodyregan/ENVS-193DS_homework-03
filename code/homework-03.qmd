@@ -5,7 +5,7 @@ format: html
 
 [View this repository on GitHub](https://github.com/brodyregan/ENVS-193DS_homework-03)
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(here)
 library(gt)
@@ -20,7 +20,7 @@ library(readxl)
 
 ## b.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 data <- read_csv("ENVS 193 Data - Sheet1 (2).csv") |> 
   clean_names()
 ```
@@ -58,13 +58,16 @@ ggplot(data, aes(x = location, y = duration_hr, color = location)) +
 ## d. 
 
 ```{r}
-summary_table <- data |>
+data_summary <- data |>
   group_by(location) |>
   summarize(
-    mean_duration = round(mean(duration_hr, na.rm = TRUE), 1),
-    sd_duration = round(sd(duration_hr, na.rm = TRUE), 1),
+    mean_duration = round(mean(duration_hr), 1),
+    sd_duration = round(sd(duration_hr), 1),
     count = n()
-  ) |>
+  )
+
+# Create gt table
+data_summary |>
   gt() |>
   cols_label(
     location = "Practice Location",
