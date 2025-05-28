@@ -7,12 +7,12 @@ format: html
 ##[View the rendered website] (https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html)
 
 ```{r, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(here)
-library(gt)
-library(flextable)
-library(janitor)
-library(readxl)
+library(tidyverse) # general use
+library(here) # file organization
+library(gt) # creating summary tables
+library(flextable) # creating summary tables
+library(janitor) # cleaning data frames
+library(readxl) # reading excel files
 ```
 
 ## Problem 1:

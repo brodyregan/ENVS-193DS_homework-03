@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-05-28">
 
 <title>homework-03</title>
 <style>
@@ -87,6 +88,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 28, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -98,12 +105,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><a href="https://github.com/brodyregan/ENVS-193DS_homework-03">View this repository on GitHub</a> ##[View the rendered website] (https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># general use</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># file organization</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt) <span class="co"># creating summary tables</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable) <span class="co"># creating summary tables</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># cleaning data frames</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl) <span class="co"># reading excel files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/ENVS 193 Data - Sheet1 (2).csv"</span>) <span class="sc">|&gt;</span> <span class="co"># load in data set</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co"># clean up the names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="problem-1" class="level2">
 <h2 class="anchored" data-anchor-id="problem-1">Problem 1:</h2>
@@ -115,33 +126,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="b." class="level2">
 <h2 class="anchored" data-anchor-id="b.">b.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/ENVS 193 Data - Sheet1 (2).csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> summary_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="fu">mean</span>(duration_hr),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_duration =</span> <span class="fu">sd</span>(duration_hr)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> summary_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="co">#create summary data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span> <span class="co"># separate by location, studio or home</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="co"># summarize function</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="fu">mean</span>(duration_hr), <span class="co"># calculate mean</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_duration =</span> <span class="fu">sd</span>(duration_hr) <span class="co"># calculate standard deviation</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(summary_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(summary_data) <span class="co"># view data in different viewer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> duration_hr, <span class="at">color =</span> location)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> summary_data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> mean_duration), </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">23</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> summary_data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">ymin =</span> mean_duration <span class="sc">-</span> sd_duration, <span class="at">ymax =</span> mean_duration <span class="sc">+</span> sd_duration),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Home"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Studio"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Practice Duration by Location"</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Practice Location"</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Practice Duration (hours)"</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> duration_hr, <span class="at">color =</span> location)) <span class="sc">+</span> <span class="co"># create a new plot, set x and y axis variables,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># set jitter point width, size, and shape</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> summary_data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> mean_duration), <span class="co"># plot the means for each location</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">23</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># change shape, size, and color of mean point</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> summary_data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">ymin =</span> mean_duration <span class="sc">-</span> sd_duration, <span class="at">ymax =</span> mean_duration <span class="sc">+</span> sd_duration), <span class="co"># set error bar data using summary data set, set x and y axis, create error bars by adding and subtracting 1 sd from the mean </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># set the width and color of the bars, make the properties separate from previous</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Home"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Studio"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span> <span class="co"># set colors for each location</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="co">#create lables</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Practice Duration by Location"</span>, <span class="co">#label title Practice Duration by Location </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Practice Location"</span>, <span class="co"># label x axis Practice Location</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Practice Duration (hours)"</span> <span class="co"># label y axis Practice Duration (hours)</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span> <span class="co"># change theme to light</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># remove legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -158,42 +165,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="d." class="level2">
 <h2 class="anchored" data-anchor-id="d.">d.&nbsp;</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_summary <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="fu">round</span>(<span class="fu">mean</span>(duration_hr), <span class="dv">1</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_duration =</span> <span class="fu">round</span>(<span class="fu">sd</span>(duration_hr), <span class="dv">1</span>),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>()</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_summary <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="co">#create new summary data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span> <span class="co"># separate by location </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="co"># create summary statistics </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="fu">round</span>(<span class="fu">mean</span>(duration_hr), <span class="dv">1</span>), <span class="co"># calculate mean to 1 decimal point</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_duration =</span> <span class="fu">round</span>(<span class="fu">sd</span>(duration_hr), <span class="dv">1</span>), <span class="co"># calculate standard deviation to 1 decimal point</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>() <span class="co"># include number of observations</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create gt table</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>data_summary <span class="sc">|&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">location =</span> <span class="st">"Practice Location"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="st">"Mean Duration (hours)"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_duration =</span> <span class="st">"SD (hours)"</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="st">"Number of Sessions"</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Practice Duration Summary by Location"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>data_summary <span class="sc">|&gt;</span> <span class="co"># load data summary</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> <span class="co"># use table function</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>( <span class="co"># create labels</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">location =</span> <span class="st">"Practice Location"</span>, <span class="co"># label location </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="st">"Mean Duration (hours)"</span>, <span class="co"># label mean </span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_duration =</span> <span class="st">"SD (hours)"</span>, <span class="co"># label standard deviation</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="st">"Number of Sessions"</span> <span class="co"># label number of sessions</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Practice Duration Summary by Location"</span>) <span class="co"># create title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="uxyhxfnjyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uxyhxfnjyg table {
+<div id="gdqrfbwyjb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gdqrfbwyjb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uxyhxfnjyg thead, #uxyhxfnjyg tbody, #uxyhxfnjyg tfoot, #uxyhxfnjyg tr, #uxyhxfnjyg td, #uxyhxfnjyg th {
+#gdqrfbwyjb thead, #gdqrfbwyjb tbody, #gdqrfbwyjb tfoot, #gdqrfbwyjb tr, #gdqrfbwyjb td, #gdqrfbwyjb th {
   border-style: none;
 }
 
-#uxyhxfnjyg p {
+#gdqrfbwyjb p {
   margin: 0;
   padding: 0;
 }
 
-#uxyhxfnjyg .gt_table {
+#gdqrfbwyjb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -219,12 +225,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_caption {
+#gdqrfbwyjb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uxyhxfnjyg .gt_title {
+#gdqrfbwyjb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -236,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#uxyhxfnjyg .gt_subtitle {
+#gdqrfbwyjb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -248,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#uxyhxfnjyg .gt_heading {
+#gdqrfbwyjb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -260,13 +266,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_bottom_border {
+#gdqrfbwyjb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_col_headings {
+#gdqrfbwyjb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -281,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_col_heading {
+#gdqrfbwyjb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -301,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#uxyhxfnjyg .gt_column_spanner_outer {
+#gdqrfbwyjb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -313,15 +319,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#uxyhxfnjyg .gt_column_spanner_outer:first-child {
+#gdqrfbwyjb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uxyhxfnjyg .gt_column_spanner_outer:last-child {
+#gdqrfbwyjb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uxyhxfnjyg .gt_column_spanner {
+#gdqrfbwyjb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -333,11 +339,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#uxyhxfnjyg .gt_spanner_row {
+#gdqrfbwyjb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uxyhxfnjyg .gt_group_heading {
+#gdqrfbwyjb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -363,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#uxyhxfnjyg .gt_empty_group_heading {
+#gdqrfbwyjb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -378,15 +384,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#uxyhxfnjyg .gt_from_md > :first-child {
+#gdqrfbwyjb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uxyhxfnjyg .gt_from_md > :last-child {
+#gdqrfbwyjb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uxyhxfnjyg .gt_row {
+#gdqrfbwyjb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -405,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#uxyhxfnjyg .gt_stub {
+#gdqrfbwyjb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -418,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uxyhxfnjyg .gt_stub_row_group {
+#gdqrfbwyjb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -432,15 +438,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#uxyhxfnjyg .gt_row_group_first td {
+#gdqrfbwyjb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uxyhxfnjyg .gt_row_group_first th {
+#gdqrfbwyjb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uxyhxfnjyg .gt_summary_row {
+#gdqrfbwyjb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -450,16 +456,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uxyhxfnjyg .gt_first_summary_row {
+#gdqrfbwyjb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_first_summary_row.thick {
+#gdqrfbwyjb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uxyhxfnjyg .gt_last_summary_row {
+#gdqrfbwyjb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -469,7 +475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_grand_summary_row {
+#gdqrfbwyjb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -479,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uxyhxfnjyg .gt_first_grand_summary_row {
+#gdqrfbwyjb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -489,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_last_grand_summary_row_top {
+#gdqrfbwyjb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -499,11 +505,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_striped {
+#gdqrfbwyjb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uxyhxfnjyg .gt_table_body {
+#gdqrfbwyjb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -512,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_footnotes {
+#gdqrfbwyjb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -526,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_footnote {
+#gdqrfbwyjb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -535,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uxyhxfnjyg .gt_sourcenotes {
+#gdqrfbwyjb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -549,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#uxyhxfnjyg .gt_sourcenote {
+#gdqrfbwyjb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -557,72 +563,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#uxyhxfnjyg .gt_left {
+#gdqrfbwyjb .gt_left {
   text-align: left;
 }
 
-#uxyhxfnjyg .gt_center {
+#gdqrfbwyjb .gt_center {
   text-align: center;
 }
 
-#uxyhxfnjyg .gt_right {
+#gdqrfbwyjb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uxyhxfnjyg .gt_font_normal {
+#gdqrfbwyjb .gt_font_normal {
   font-weight: normal;
 }
 
-#uxyhxfnjyg .gt_font_bold {
+#gdqrfbwyjb .gt_font_bold {
   font-weight: bold;
 }
 
-#uxyhxfnjyg .gt_font_italic {
+#gdqrfbwyjb .gt_font_italic {
   font-style: italic;
 }
 
-#uxyhxfnjyg .gt_super {
+#gdqrfbwyjb .gt_super {
   font-size: 65%;
 }
 
-#uxyhxfnjyg .gt_footnote_marks {
+#gdqrfbwyjb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uxyhxfnjyg .gt_asterisk {
+#gdqrfbwyjb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uxyhxfnjyg .gt_indent_1 {
+#gdqrfbwyjb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uxyhxfnjyg .gt_indent_2 {
+#gdqrfbwyjb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uxyhxfnjyg .gt_indent_3 {
+#gdqrfbwyjb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uxyhxfnjyg .gt_indent_4 {
+#gdqrfbwyjb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uxyhxfnjyg .gt_indent_5 {
+#gdqrfbwyjb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uxyhxfnjyg .katex-display {
+#gdqrfbwyjb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uxyhxfnjyg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gdqrfbwyjb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

@@ -10,7 +10,7 @@ This repository includes all the data and code for my Homework 3 assignment.
 
 ### Packages
 
-```
+```{r, message=FALSE, warning=FALSE}
 library(tidyverse) # general use
 library(here) # file organization
 library(gt) # creating summary tables
