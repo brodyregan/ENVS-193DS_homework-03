@@ -2,7 +2,7 @@
 
 Spring 2025
 
-##General Information
+## General Information
 
 This dataset is from: Brody Regan - personal observations. The observations and data aim to analyze what factors influence how long I practice an instrument for. Some variables include meals ate, amount of time on campus, what instrument is practiced, etc. 
 
@@ -41,7 +41,7 @@ All code is in the `code` folder. The code runs models, generates model predicti
 
 ## Rendered Output
 
-The rendered website is [here[https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html]]
+The rendered website is [here](https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html).
 
 
 
