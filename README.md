@@ -35,7 +35,7 @@ File Structure:
 │   └── ENVS 193 Data - Sheet1 (2).csv              # my data
 │   ├── IMG_5716.jpg                                # my affective visualization                  
 │   ├── surgeonfish.jpg                             # statistical figure
-    
+``` 
 
 All code is in the `code` folder. The code runs models, generates model predictions, and visualizes data.
 
