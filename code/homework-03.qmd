@@ -1,5 +1,7 @@
 ---
 title: "homework-03"
+name: "Brody Regan"
+date: "5/28/2025"
 format: html
 ---
 
@@ -15,42 +17,43 @@ library(janitor) # cleaning data frames
 library(readxl) # reading excel files
 ```
 
+```{r, message=FALSE, warning=FALSE}
+data <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") |> # load in data set
+  clean_names() # clean up the names
+```
+
 ## Problem 1:
 ## a.
 [I could calculate the mean amount of time I practice at each location to compare how long I tend to practice at the studio or at home. This comparison would be informative because the studio has less distractions, likely encouraging me to practice longer than I do at home.]
 
 ## b.
 
-```{r, message=FALSE, warning=FALSE}
-data <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") |> 
-  clean_names()
-```
 
 ```{r}
- summary_data <- data |>
-  group_by(location) |>
-  summarise(
-    mean_duration = mean(duration_hr),
-    sd_duration = sd(duration_hr)
+ summary_data <- data |> #create summary data
+  group_by(location) |> # separate by location, studio or home
+  summarise( # summarize function
+    mean_duration = mean(duration_hr), # calculate mean
+    sd_duration = sd(duration_hr) # calculate standard deviation
   )
-view(summary_data)
+view(summary_data) # view data in different viewer
 ```
 
 ```{r}
-ggplot(data, aes(x = location, y = duration_hr, color = location)) +
-  geom_jitter(width = 0.2, alpha = 0.6, size = 2) +
-  geom_point(data = summary_data, aes(x = location, y = mean_duration), 
-             shape = 23, size = 4, fill = "black") +
-  geom_errorbar(data = summary_data, aes(x = location, ymin = mean_duration - sd_duration, ymax = mean_duration + sd_duration),
-                width = 0.2, color = "black", inherit.aes = FALSE) +
-  scale_color_manual(values = c("Home" = "blue", "Studio" = "orange")) +
-  labs(
-    title = "Practice Duration by Location",
-    x = "Practice Location",
-    y = "Practice Duration (hours)"
+ggplot(data, aes(x = location, y = duration_hr, color = location)) + # create a new plot, set x and y axis variables,
+  geom_jitter(width = 0.2, alpha = 0.6, size = 2) + # set jitter point width, size, and shape
+  geom_point(data = summary_data, aes(x = location, y = mean_duration), # plot the means for each location
+             shape = 23, size = 4, fill = "black") + # change shape, size, and color of mean point
+  geom_errorbar(data = summary_data, aes(x = location, ymin = mean_duration - sd_duration, ymax = mean_duration + sd_duration), # set error bar data using summary data set, set x and y axis, create error bars by adding and subtracting 1 sd from the mean 
+                width = 0.2, color = "black", inherit.aes = FALSE) + # set the width and color of the bars, make the properties separate from previous
+  scale_color_manual(values = c("Home" = "blue", "Studio" = "orange")) + # set colors for each location
+  labs( #create lables
+    title = "Practice Duration by Location", #label title Practice Duration by Location 
+    x = "Practice Location", # label x axis Practice Location
+    y = "Practice Duration (hours)" # label y axis Practice Duration (hours)
   ) +
-  theme_light(base_size = 14) +
-  theme(legend.position = "none")
+  theme_light(base_size = 14) + # change theme to light
+  theme(legend.position = "none") # remove legend
 ```
 
 ## c. 
@@ -59,24 +62,23 @@ ggplot(data, aes(x = location, y = duration_hr, color = location)) +
 ## d. 
 
 ```{r}
-data_summary <- data |>
-  group_by(location) |>
-  summarize(
-    mean_duration = round(mean(duration_hr), 1),
-    sd_duration = round(sd(duration_hr), 1),
-    count = n()
+data_summary <- data |> #create new summary data
+  group_by(location) |> # separate by location 
+  summarize( # create summary statistics 
+    mean_duration = round(mean(duration_hr), 1), # calculate mean to 1 decimal point
+    sd_duration = round(sd(duration_hr), 1), # calculate standard deviation to 1 decimal point
+    count = n() # include number of observations
   )
 
-# Create gt table
-data_summary |>
-  gt() |>
-  cols_label(
-    location = "Practice Location",
-    mean_duration = "Mean Duration (hours)",
-    sd_duration = "SD (hours)",
-    count = "Number of Sessions"
+data_summary |> # load data summary
+  gt() |> # use table function
+  cols_label( # create labels
+    location = "Practice Location", # label location 
+    mean_duration = "Mean Duration (hours)", # label mean 
+    sd_duration = "SD (hours)", # label standard deviation
+    count = "Number of Sessions" # label number of sessions
   ) |>
-  tab_header(title = "Practice Duration Summary by Location")
+  tab_header(title = "Practice Duration Summary by Location") # create title
 
 ```
 
