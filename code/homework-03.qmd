@@ -141,7 +141,11 @@ ggplot(visual_data, aes(x = SessionID, y = 1, #load data, put each session along
 [The authors did a good presenting the statistical trends that were discovered. The x-axis clearly shows time in ms while the y-axis shows fin protraction in mm. Although not explicitly explained, the horizontal dashed line at y = 0 acts as a visual baseline for understanding movement of the fins. The raw data points are not plotted, but included are the mean values with error bars which represent the range of data collected. The visualization of the trailing and leading edge of the fish are well shown by the inclusion of fish diagrams above the graph.]
 
 
+## c.
+[The authors handled visual clutter relatively well in the figure by limiting it to only 2 clearly labeled curves. There are no grid-lines, only a center horizontal line. There is also a lack of text on the figure, relying more on the imagery. The data to ink ratio is high considering most visual elements support the data collected.]
 
+## d. 
+[]
 
 
 
