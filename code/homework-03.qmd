@@ -132,20 +132,13 @@ ggplot(visual_data, aes(x = SessionID, y = 1, #load data, put each session along
 4. I created this by first loading the data set and writing the code for the ggplot/tiles. Then through online research and help from AI I was able to fill in the rest of the code through trial and error. ]
 
 
+## Problem 3: 
+## a. 
+![Photo](../data/surgeonfish.jpg)
+[The statistical test the author's are using to answer the main research questions are generalized linear models. This is a logistic regression. The purpose of this test was to see how algal length influences suction and ventral expansion during feeding. They also used a generalized least squares model determine differences in the first and second jaw opening.]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+## b.
+[The authors did a good presenting the statistical trends that were discovered. The x-axis clearly shows time in ms while the y-axis shows fin protraction in mm. Although not explicitly explained, the horizontal dashed line at y = 0 acts as a visual baseline for understanding movement of the fins. The raw data points are not plotted, but included are the mean values with error bars which represent the range of data collected. The visualization of the trailing and leading edge of the fish are well shown by the inclusion of fish diagrams above the graph.]
 
 
 
