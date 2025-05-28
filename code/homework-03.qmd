@@ -2,10 +2,11 @@
 title: "Homework-03"
 author: "Brody Regan"
 date: "5/28/2025"
-output:
-  html_document:
-    toc: true
-    toc_float: true
+format:
+  html:
+    toc: true # create toc
+    toc-location: left # move to the left
+    toc-floating: true # enable floating
 ---
 
 [View this repository on GitHub](https://github.com/brodyregan/ENVS-193DS_homework-03)
@@ -32,7 +33,7 @@ data <- read_csv("../data/ENVS 193 Data - Sheet1 (2).csv") |> # load in data set
 
 
 ```{r}
- summary_data <- data |> #create summary data
+ summary_data <- data |> # create summary data
   group_by(location) |> # separate by location, studio or home
   summarise( # summarize function
     mean_duration = mean(duration_hr), # calculate mean
@@ -45,7 +46,7 @@ view(summary_data) # view data in different viewer
 ggplot(data, aes(x = location, y = duration_hr, color = location)) + # create a new plot, set x and y axis variables,
   geom_jitter(width = 0.2, alpha = 0.6, size = 2) + # set jitter point width, size, and shape
   geom_point(data = summary_data, aes(x = location, y = mean_duration), # plot the means for each location
-             shape = 23, size = 4, fill = "black") + # change shape, size, and color of mean point
+             shape = 23, size = 4, fill = "black") + # change shape to diamond, size, and color of mean point
   geom_errorbar(data = summary_data, aes(x = location, ymin = mean_duration - sd_duration, ymax = mean_duration + sd_duration), # set error bar data using summary data set, set x and y axis, create error bars by adding and subtracting 1 sd from the mean 
                 width = 0.2, color = "black", inherit.aes = FALSE) + # set the width and color of the bars, make the properties separate from previous
   scale_color_manual(values = c("Home" = "blue", "Studio" = "orange")) + # set colors for each location
@@ -59,7 +60,7 @@ ggplot(data, aes(x = location, y = duration_hr, color = location)) + # create a 
 ```
 
 ## c. 
-[Figure 1: Practicing in the studio tends to allow for longer practice time. Data Source: Brody Regan. Points represent observations of practice time (in hours) at practice location (Home or Studio). The center black diamond represents the mean time, and error bars show ±1 standard deviation), both respective to their site. Colors represent location (blue = home, orange = studio).]
+[Figure 1, Practice Duration by Location: Practicing in the studio tends to allow for longer practice time. Data Source: Brody Regan, personal observations. Points represent observations of practice time (in hours) at practice location (Home or Studio). The center black diamond represents the mean time, and error bars show ±1 standard deviation), both respective to their site. Colors represent location (blue = home, orange = studio).]
 
 ## d. 
 
@@ -121,7 +122,7 @@ ggplot(visual_data, aes(x = SessionID, y = 1, #load data, put each session along
     plot.title = element_text(hjust = 0.5, size = 16, face = "bold")
   ) + #center the title and make it bold
   labs(
-    title = "Rhythmic Strips: A Semester of Practice", #label title
+    title = "Rhythmic Strips", #label title
     fill = "Instrument", #label instrument for legend
     size = "Meals Ate" #label meals ate for legend
   )
@@ -139,17 +140,17 @@ ggplot(visual_data, aes(x = SessionID, y = 1, #load data, put each session along
 ## Problem 3: 
 ## a. 
 ![Photo](../data/surgeonfish.jpg)
-[The statistical test the author's are using to answer the main research questions are generalized linear models. This is a logistic regression. The purpose of this test was to see how algal length influences suction and ventral expansion during feeding. They also used a generalized least squares model determine differences in the first and second jaw opening.]
+[The statistical test the authors are using to answer the main research questions are generalized linear models. This is a logistic regression. The purpose of this test was to see how algal length influences suction and ventral expansion during feeding. They also used a generalized least squares model determine differences in the first and second jaw opening.]
 
 ## b.
-[The authors did a good presenting the statistical trends that were discovered. The x-axis clearly shows time in ms while the y-axis shows fin protraction in mm. Although not explicitly explained, the horizontal dashed line at y = 0 acts as a visual baseline for understanding movement of the fins. The raw data points are not plotted, but included are the mean values with error bars which represent the range of data collected. The visualization of the trailing and leading edge of the fish are well shown by the inclusion of fish diagrams above the graph.]
+[The authors did a good job presenting the statistical trends that were discovered. The x-axis clearly shows time in ms while the y-axis shows fin protraction in mm. Although not explicitly explained, the horizontal dashed line at y = 0 acts as a visual baseline for understanding movement of the fins. The raw data points are not plotted, but included are the mean values with error bars which represent the range of data collected. The visualization of the trailing and leading edge of the fish are well shown by the inclusion of fish diagrams above the graph.]
 
 
 ## c.
-[The authors handled visual clutter relatively well in the figure by limiting it to only 2 clearly labeled curves. There are no grid-lines, only a center horizontal line. There is also a lack of text on the figure, relying more on the imagery. The data to ink ratio is high considering most visual elements support the data collected.]
+[The authors handled visual clutter relatively well in the figure by limiting it to only 2 clearly labeled curves. There are no grid-lines, only a center horizontal line. There is also a lack of text on the figure, relying more on the imagery. The colors in the background of the graph seem to make it slightly more cluttered. However, the data to ink ratio is still high considering most visual elements support the data collected.]
 
 ## d. 
-[To improve this figure, I would recommend adding a legend for color coding within the plot area itself. There are multiple background colors such as dark blue, grey, light blue, and yellow that need to be defined. I would also include marked points with text to show the different phases of feeding, such as ventral pull or protraction. These could be added to the x-axis or as points along the curves.]
+[To improve this figure, I would recommend adding a legend for color coding within the plot area itself. There are multiple background colors such as dark blue, grey, light blue, and yellow that need to be defined. Without it, understanding what they mean in context of the work is difficult. I would also include marked points with text to show the different phases of feeding, such as ventral pull or protraction to help the viewer understand the mechanism through time. These could be added to the x-axis or as points along the curves.]
 
 
 

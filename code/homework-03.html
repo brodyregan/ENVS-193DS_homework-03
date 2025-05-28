@@ -73,10 +73,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1:</a></li>
+  <li><a href="#a." id="toc-a." class="nav-link" data-scroll-target="#a.">a.</a></li>
+  <li><a href="#b." id="toc-b." class="nav-link" data-scroll-target="#b.">b.</a></li>
+  <li><a href="#c." id="toc-c." class="nav-link" data-scroll-target="#c.">c.&nbsp;</a></li>
+  <li><a href="#d." id="toc-d." class="nav-link" data-scroll-target="#d.">d.&nbsp;</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2:</a></li>
+  <li><a href="#a.-1" id="toc-a.-1" class="nav-link" data-scroll-target="#a.-1">a.</a></li>
+  <li><a href="#b.-1" id="toc-b.-1" class="nav-link" data-scroll-target="#b.-1">b.</a></li>
+  <li><a href="#c.-1" id="toc-c.-1" class="nav-link" data-scroll-target="#c.-1">c.</a></li>
+  <li><a href="#d.-1" id="toc-d.-1" class="nav-link" data-scroll-target="#d.-1">d.</a></li>
+  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3:</a></li>
+  <li><a href="#a.-2" id="toc-a.-2" class="nav-link" data-scroll-target="#a.-2">a.</a></li>
+  <li><a href="#b.-2" id="toc-b.-2" class="nav-link" data-scroll-target="#b.-2">b.</a></li>
+  <li><a href="#c.-2" id="toc-c.-2" class="nav-link" data-scroll-target="#c.-2">c.</a></li>
+  <li><a href="#d.-2" id="toc-d.-2" class="nav-link" data-scroll-target="#d.-2">d.&nbsp;</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -133,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="b." class="level2">
 <h2 class="anchored" data-anchor-id="b.">b.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> summary_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="co">#create summary data</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> summary_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> <span class="co"># create summary data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span> <span class="co"># separate by location, studio or home</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( <span class="co"># summarize function</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_duration =</span> <span class="fu">mean</span>(duration_hr), <span class="co"># calculate mean</span></span>
@@ -145,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> duration_hr, <span class="at">color =</span> location)) <span class="sc">+</span> <span class="co"># create a new plot, set x and y axis variables,</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># set jitter point width, size, and shape</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> summary_data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> mean_duration), <span class="co"># plot the means for each location</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">23</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># change shape, size, and color of mean point</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">23</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># change shape to diamond, size, and color of mean point</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">data =</span> summary_data, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">ymin =</span> mean_duration <span class="sc">-</span> sd_duration, <span class="at">ymax =</span> mean_duration <span class="sc">+</span> sd_duration), <span class="co"># set error bar data using summary data set, set x and y axis, create error bars by adding and subtracting 1 sd from the mean </span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># set the width and color of the bars, make the properties separate from previous</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Home"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Studio"</span> <span class="ot">=</span> <span class="st">"orange"</span>)) <span class="sc">+</span> <span class="co"># set colors for each location</span></span>
@@ -167,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="c." class="level2">
 <h2 class="anchored" data-anchor-id="c.">c.&nbsp;</h2>
-<p>[Figure 1: Practicing in the studio tends to allow for longer practice time. Data Source: Brody Regan. Points represent observations of practice time (in hours) at practice location (Home or Studio). The center black diamond represents the mean time, and error bars show ±1 standard deviation), both respective to their site. Colors represent location (blue = home, orange = studio).]</p>
+<p>[Figure 1, Practice Duration by Location: Practicing in the studio tends to allow for longer practice time. Data Source: Brody Regan, personal observations. Points represent observations of practice time (in hours) at practice location (Home or Studio). The center black diamond represents the mean time, and error bars show ±1 standard deviation), both respective to their site. Colors represent location (blue = home, orange = studio).]</p>
 </section>
 <section id="d." class="level2">
 <h2 class="anchored" data-anchor-id="d.">d.&nbsp;</h2>
@@ -190,23 +214,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Practice Duration Summary by Location"</span>) <span class="co"># create title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="rijyqbyhdi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rijyqbyhdi table {
+<div id="rbgvlvdhts" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rbgvlvdhts table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rijyqbyhdi thead, #rijyqbyhdi tbody, #rijyqbyhdi tfoot, #rijyqbyhdi tr, #rijyqbyhdi td, #rijyqbyhdi th {
+#rbgvlvdhts thead, #rbgvlvdhts tbody, #rbgvlvdhts tfoot, #rbgvlvdhts tr, #rbgvlvdhts td, #rbgvlvdhts th {
   border-style: none;
 }
 
-#rijyqbyhdi p {
+#rbgvlvdhts p {
   margin: 0;
   padding: 0;
 }
 
-#rijyqbyhdi .gt_table {
+#rbgvlvdhts .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -232,12 +256,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_caption {
+#rbgvlvdhts .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rijyqbyhdi .gt_title {
+#rbgvlvdhts .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -249,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#rijyqbyhdi .gt_subtitle {
+#rbgvlvdhts .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -261,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#rijyqbyhdi .gt_heading {
+#rbgvlvdhts .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -273,13 +297,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_bottom_border {
+#rbgvlvdhts .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_col_headings {
+#rbgvlvdhts .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -294,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_col_heading {
+#rbgvlvdhts .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -314,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#rijyqbyhdi .gt_column_spanner_outer {
+#rbgvlvdhts .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -326,15 +350,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#rijyqbyhdi .gt_column_spanner_outer:first-child {
+#rbgvlvdhts .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rijyqbyhdi .gt_column_spanner_outer:last-child {
+#rbgvlvdhts .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rijyqbyhdi .gt_column_spanner {
+#rbgvlvdhts .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -346,11 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#rijyqbyhdi .gt_spanner_row {
+#rbgvlvdhts .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rijyqbyhdi .gt_group_heading {
+#rbgvlvdhts .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -376,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#rijyqbyhdi .gt_empty_group_heading {
+#rbgvlvdhts .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -391,15 +415,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#rijyqbyhdi .gt_from_md > :first-child {
+#rbgvlvdhts .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rijyqbyhdi .gt_from_md > :last-child {
+#rbgvlvdhts .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rijyqbyhdi .gt_row {
+#rbgvlvdhts .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -418,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#rijyqbyhdi .gt_stub {
+#rbgvlvdhts .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -431,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rijyqbyhdi .gt_stub_row_group {
+#rbgvlvdhts .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -445,15 +469,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#rijyqbyhdi .gt_row_group_first td {
+#rbgvlvdhts .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rijyqbyhdi .gt_row_group_first th {
+#rbgvlvdhts .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rijyqbyhdi .gt_summary_row {
+#rbgvlvdhts .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -463,16 +487,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rijyqbyhdi .gt_first_summary_row {
+#rbgvlvdhts .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_first_summary_row.thick {
+#rbgvlvdhts .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rijyqbyhdi .gt_last_summary_row {
+#rbgvlvdhts .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -482,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_grand_summary_row {
+#rbgvlvdhts .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -492,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rijyqbyhdi .gt_first_grand_summary_row {
+#rbgvlvdhts .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -502,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_last_grand_summary_row_top {
+#rbgvlvdhts .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -512,11 +536,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_striped {
+#rbgvlvdhts .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rijyqbyhdi .gt_table_body {
+#rbgvlvdhts .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -525,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_footnotes {
+#rbgvlvdhts .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -539,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_footnote {
+#rbgvlvdhts .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -548,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rijyqbyhdi .gt_sourcenotes {
+#rbgvlvdhts .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -562,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rijyqbyhdi .gt_sourcenote {
+#rbgvlvdhts .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -570,72 +594,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rijyqbyhdi .gt_left {
+#rbgvlvdhts .gt_left {
   text-align: left;
 }
 
-#rijyqbyhdi .gt_center {
+#rbgvlvdhts .gt_center {
   text-align: center;
 }
 
-#rijyqbyhdi .gt_right {
+#rbgvlvdhts .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rijyqbyhdi .gt_font_normal {
+#rbgvlvdhts .gt_font_normal {
   font-weight: normal;
 }
 
-#rijyqbyhdi .gt_font_bold {
+#rbgvlvdhts .gt_font_bold {
   font-weight: bold;
 }
 
-#rijyqbyhdi .gt_font_italic {
+#rbgvlvdhts .gt_font_italic {
   font-style: italic;
 }
 
-#rijyqbyhdi .gt_super {
+#rbgvlvdhts .gt_super {
   font-size: 65%;
 }
 
-#rijyqbyhdi .gt_footnote_marks {
+#rbgvlvdhts .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rijyqbyhdi .gt_asterisk {
+#rbgvlvdhts .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rijyqbyhdi .gt_indent_1 {
+#rbgvlvdhts .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rijyqbyhdi .gt_indent_2 {
+#rbgvlvdhts .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rijyqbyhdi .gt_indent_3 {
+#rbgvlvdhts .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rijyqbyhdi .gt_indent_4 {
+#rbgvlvdhts .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rijyqbyhdi .gt_indent_5 {
+#rbgvlvdhts .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rijyqbyhdi .katex-display {
+#rbgvlvdhts .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rijyqbyhdi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rbgvlvdhts div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -709,7 +733,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="co">#center the title and make it bold</span></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rhythmic Strips: A Semester of Practice"</span>, <span class="co">#label title</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rhythmic Strips"</span>, <span class="co">#label title</span></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Instrument"</span>, <span class="co">#label instrument for legend</span></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"Meals Ate"</span> <span class="co">#label meals ate for legend</span></span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -731,19 +755,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a.-2" class="level2">
 <h2 class="anchored" data-anchor-id="a.-2">a.</h2>
-<p><img src="../data/surgeonfish.jpg" class="img-fluid" alt="Photo"> [The statistical test the author’s are using to answer the main research questions are generalized linear models. This is a logistic regression. The purpose of this test was to see how algal length influences suction and ventral expansion during feeding. They also used a generalized least squares model determine differences in the first and second jaw opening.]</p>
+<p><img src="../data/surgeonfish.jpg" class="img-fluid" alt="Photo"> [The statistical test the authors are using to answer the main research questions are generalized linear models. This is a logistic regression. The purpose of this test was to see how algal length influences suction and ventral expansion during feeding. They also used a generalized least squares model determine differences in the first and second jaw opening.]</p>
 </section>
 <section id="b.-2" class="level2">
 <h2 class="anchored" data-anchor-id="b.-2">b.</h2>
-<p>[The authors did a good presenting the statistical trends that were discovered. The x-axis clearly shows time in ms while the y-axis shows fin protraction in mm. Although not explicitly explained, the horizontal dashed line at y = 0 acts as a visual baseline for understanding movement of the fins. The raw data points are not plotted, but included are the mean values with error bars which represent the range of data collected. The visualization of the trailing and leading edge of the fish are well shown by the inclusion of fish diagrams above the graph.]</p>
+<p>[The authors did a good job presenting the statistical trends that were discovered. The x-axis clearly shows time in ms while the y-axis shows fin protraction in mm. Although not explicitly explained, the horizontal dashed line at y = 0 acts as a visual baseline for understanding movement of the fins. The raw data points are not plotted, but included are the mean values with error bars which represent the range of data collected. The visualization of the trailing and leading edge of the fish are well shown by the inclusion of fish diagrams above the graph.]</p>
 </section>
 <section id="c.-2" class="level2">
 <h2 class="anchored" data-anchor-id="c.-2">c.</h2>
-<p>[The authors handled visual clutter relatively well in the figure by limiting it to only 2 clearly labeled curves. There are no grid-lines, only a center horizontal line. There is also a lack of text on the figure, relying more on the imagery. The data to ink ratio is high considering most visual elements support the data collected.]</p>
+<p>[The authors handled visual clutter relatively well in the figure by limiting it to only 2 clearly labeled curves. There are no grid-lines, only a center horizontal line. There is also a lack of text on the figure, relying more on the imagery. The colors in the background of the graph seem to make it slightly more cluttered. However, the data to ink ratio is still high considering most visual elements support the data collected.]</p>
 </section>
 <section id="d.-2" class="level2">
 <h2 class="anchored" data-anchor-id="d.-2">d.&nbsp;</h2>
-<p>[To improve this figure, I would recommend adding a legend for color coding within the plot area itself. There are multiple background colors such as dark blue, grey, light blue, and yellow that need to be defined. I would also include marked points with text to show the different phases of feeding, such as ventral pull or protraction. These could be added to the x-axis or as points along the curves.]</p>
+<p>[To improve this figure, I would recommend adding a legend for color coding within the plot area itself. There are multiple background colors such as dark blue, grey, light blue, and yellow that need to be defined. Without it, understanding what they mean in context of the work is difficult. I would also include marked points with text to show the different phases of feeding, such as ventral pull or protraction to help the viewer understand the mechanism through time. These could be added to the x-axis or as points along the curves.]</p>
 </section>
 
 </main>
