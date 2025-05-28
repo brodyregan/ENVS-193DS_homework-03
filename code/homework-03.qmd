@@ -145,7 +145,7 @@ ggplot(visual_data, aes(x = SessionID, y = 1, #load data, put each session along
 [The authors handled visual clutter relatively well in the figure by limiting it to only 2 clearly labeled curves. There are no grid-lines, only a center horizontal line. There is also a lack of text on the figure, relying more on the imagery. The data to ink ratio is high considering most visual elements support the data collected.]
 
 ## d. 
-[]
+[To improve this figure, I would recommend adding a legend for color coding within the plot area itself. There are multiple background colors such as dark blue, grey, light blue, and yellow that need to be defined. I would also include marked points with text to show the different phases of feeding, such as ventral pull or protraction. These could be added to the x-axis or as points along the curves.]
 
 
 
