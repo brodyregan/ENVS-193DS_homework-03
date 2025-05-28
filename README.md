@@ -41,7 +41,7 @@ All code is in the `code` folder. The code runs models, generates model predicti
 
 ## Rendered Output
 
-The rendered website is [here](https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html).
+The rendered website is [here](https://brodyregan.github.io/ENVS-193DS_homework-03/code/homework-03.html). 
 
 
 
